@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitts Yasası - Kötü Tasarım</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            min-height: 600px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .formula {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            border-left: 4px solid #ffc107;
+        }
+        .info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #495057;
+        }
+        .patient-info {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .patient-info h3 {
+            margin-bottom: 10px;
+            color: #495057;
+        }
+        .patient-info p {
+            margin: 5px 0;
+            color: #6c757d;
+        }
+        .triage-form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .triage-form h3 {
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        .form-row {
+            margin-bottom: 15px;
+        }
+        .form-row label {
+            display: block;
+            margin-bottom: 5px;
+            color: #495057;
+            font-weight: bold;
+        }
+        .form-row input, .form-row select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .emergency-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 16px;
+            height: 16px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 8px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .emergency-btn:hover {
+            background: #c82333;
+        }
+        .calculation {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8d7da;
+            border-radius: 5px;
+            border-left: 4px solid #dc3545;
+        }
+        .calculation h3 {
+            margin-bottom: 15px;
+            color: #721c24;
+        }
+        .calc-result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #dc3545;
+            margin-top: 10px;
+        }
+        .warning {
+            color: #dc3545;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .distance-indicator {
+            position: absolute;
+            top: 28px;
+            left: 30px;
+            right: 44px;
+            height: 2px;
+            background: linear-gradient(to right, #dc3545, #ffc107);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="emergency-btn" title="Triyaj Kodunu Onayla & Acil Çağrı">✓</button>
+
+        <div class="distance-indicator">D = 900px (Kullanıcı başlangıç noktasından butona mesafe)</div>
+
+        <h1>Triyaj Kodu Onaylama - FITTS YASASI (KÖTÜ TASARIM)</h1>
+        <p class="subtitle">Acil Servis Triyaj Sistemi - Kritik Onay Butonu</p>
+
+        <div class="formula">
+            <strong>Fitts Yasası Formülü:</strong> MT = a + b · log₂(2D/W)<br>
+            MT = Hareket süresi (ms)<br>
+            a = Başlangıç süresi (100-200 ms)<br>
+            b = Hareket katsayısı (100-150 ms)<br>
+            D = Mesafe (px)<br>
+            W = Hedef genişliği (px)
+        </div>
+
+        <div class="info">
+            <strong>Mevcut Durum:</strong> Kritik "Triyaj Kodunu Onayla & Acil Çağrı" butonu ekranın sağ üst köşesinde,
+            16px × 16px boyutunda ve kullanıcıdan 900px uzaklıkta bulunmaktadır.
+        </div>
+
+        <div class="patient-info">
+            <h3>Hasta Bilgileri</h3>
+            <p><strong>Ad Soyad:</strong> Ahmet Yılmaz</p>
+            <p><strong>Yaş:</strong> 45</p>
+            <p><strong>Şikayet:</strong> Göğüs ağrısı, nefes darlığı</p>
+            <p><strong>Vital Bulgular:</strong> T: 38/95 mmHg, N: 110/dk, SpO2: 88%</p>
+        </div>
+
+        <div class="triage-form">
+            <h3>Triyaj Kodu Belirleme</h3>
+            <div class="form-row">
+                <label>Triyaj Kodu:</label>
+                <select>
+                    <option value="">Seçiniz...</option>
+                    <option value="kirmizi">Kırmızı (Acil)</option>
+                    <option value="sari">Sarı (Hasta Beklemeli)</option>
+                    <option value="yesil">Yeşil (Hasta Beklemeli)</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label>Acil Durum Nedeni:</label>
+                <input type="text" placeholder="Nedeni belirtiniz...">
+            </div>
+            <div class="form-row">
+                <label>Ek Notlar:</label>
+                <input type="text" placeholder="Ek notlar...">
+            </div>
+        </div>
+
+        <div class="calculation">
+            <h3>Hesaplama:</h3>
+            <p>D = 900 px (mesafe)</p>
+            <p>W = 16 px (hedef genişliği)</p>
+            <p>a = 150 ms (başlangıç süresi)</p>
+            <p>b = 120 ms (hareket katsayısı)</p>
+            <p>ID = log₂(2 · 900 / 16) = log₂(112.5) = 6.81 bits</p>
+            <p>MT = 150 + 120 · 6.81</p>
+            <div class="calc-result">MT ≈ 967 ms</div>
+            <p class="warning">⚠️ Hareket süresi yaklaşık 967 milisaniye (1 saniye). Buton çok küçük ve uzakta! Acil durumda kritik gecikme riski!</p>
+        </div>
+    </div>
+</body>
+</html>

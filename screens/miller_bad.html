@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miller Yasası - Kötü Tasarım</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .formula {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            border-left: 4px solid #ffc107;
+        }
+        .info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #495057;
+        }
+        .data-form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .data-form h3 {
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        .form-row {
+            margin-bottom: 12px;
+        }
+        .form-row label {
+            display: block;
+            margin-bottom: 5px;
+            color: #495057;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .form-row input, .form-row select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .calculation {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8d7da;
+            border-radius: 5px;
+            border-left: 4px solid #dc3545;
+        }
+        .calculation h3 {
+            margin-bottom: 15px;
+            color: #721c24;
+        }
+        .calc-result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #dc3545;
+            margin-top: 10px;
+        }
+        .warning {
+            color: #dc3545;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .chunk-count {
+            display: inline-block;
+            background: #dc3545;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hasta Veri Girişi - MILLER YASASI (KÖTÜ TASARIM)</h1>
+        <p class="subtitle">Acil Servis Triyaj Sistemi - Karışık Veri Girişi Formu</p>
+
+        <div class="formula">
+            <strong>Miller Yasası:</strong> Çalışma belleği ~7 ± 2 birim (Miller, 1956)<br>
+            Gruplanmamış bilgi parçaları bilişsel yükü artırır ve hata riskini yükseltir.
+        </div>
+
+        <div class="info">
+            <strong>Mevcut Durum:</strong> 15 adet karışık parametre tek bir formda alt alta yığılmıştır.
+            Hiçbir gruplama veya hiyerarşi yoktur. Kullanıcı 15 farklı bilgi parçasını aynı anda işlemelidir.
+        </div>
+
+        <div class="data-form">
+            <h3>Hasta Veri Girişi Formu <span class="chunk-count">15 Parça</span></h3>
+
+            <div class="form-row">
+                <label>Sistolik Tansiyon (mmHg):</label>
+                <input type="number" placeholder="Örn: 120">
+            </div>
+            <div class="form-row">
+                <label>Diyastolik Tansiyon (mmHg):</label>
+                <input type="number" placeholder="Örn: 80">
+            </div>
+            <div class="form-row">
+                <label>Nabız (dk/dk):</label>
+                <input type="number" placeholder="Örn: 72">
+            </div>
+            <div class="form-row">
+                <label>SpO2 (%):</label>
+                <input type="number" placeholder="Örn: 98">
+            </div>
+            <div class="form-row">
+                <label>Sıcaklık (°C):</label>
+                <input type="number" step="0.1" placeholder="Örn: 36.5">
+            </div>
+            <div class="form-row">
+                <label>GCS Skoru (3-15):</label>
+                <input type="number" placeholder="Örn: 15">
+            </div>
+            <div class="form-row">
+                <label>Pupiller Reaksiyon:</label>
+                <select>
+                    <option value="">Seçiniz...</option>
+                    <option value="normal">Normal</option>
+                    <option value="yavas">Yavaş</option>
+                    <option value="yok">Yok</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label>Ağrı Skoru (0-10):</label>
+                <input type="number" placeholder="Örn: 0">
+            </div>
+            <div class="form-row">
+                <label>Kan Şekeri (mg/dL):</label>
+                <input type="number" placeholder="Örn: 100">
+            </div>
+            <div class="form-row">
+                <label>Solunum Sayısı (dk/dk):</label>
+                <input type="number" placeholder="Örn: 16">
+            </div>
+            <div class="form-row">
+                <label>Bilinç Durumu:</label>
+                <select>
+                    <option value="">Seçiniz...</option>
+                    <option value="uyanik">Uyanık</option>
+                    <option value="sersem">Sersem</option>
+                    <option value="koma">Koma</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label>Alerji Durumu:</label>
+                <input type="text" placeholder="Alerji var mı?">
+            </div>
+            <div class="form-row">
+                <label>Kronik Hastalık:</label>
+                <input type="text" placeholder="Kronik hastalık var mı?">
+            </div>
+            <div class="form-row">
+                <label>Kullanılan İlaçlar:</label>
+                <input type="text" placeholder="Kullanılan ilaçlar...">
+            </div>
+            <div class="form-row">
+                <label>Geçmiş Öykü:</label>
+                <input type="text" placeholder="Geçmiş hastalık öyküsü...">
+            </div>
+        </div>
+
+        <div class="calculation">
+            <h3>Miller Yasası Analizi:</h3>
+            <p><strong>Bilgi Parçaları:</strong> 15 adet (Tansiyon, Nabız, SpO2, Sıcaklık, GCS, Pupiller, Ağrı, Glukoz, Solunum, Bilinç, Alerji, Kronik, İlaç, Öykü)</p>
+            <p><strong>Miller Yasası Sınırı:</strong> 7 ± 2 = 5-9 parça</p>
+            <p><strong>Mevcut Durum:</strong> 15 parça > 9 parça (sınır aşıldı)</p>
+            <div class="calc-result">Bilişsel Yük: YÜKSEK ⚠️</div>
+            <p class="warning">⚠️ Kullanıcı aynı anda 15 farklı bilgi parçasını işlemek zorunda! Bu durum bilişsel yükü önemli ölçüde artırır ve veri girişi hatalarına neden olur.</p>
+            <p style="margin-top: 10px; color: #6c757d;">Gruplama olmadığı için kullanıcı her bir alanı ayrı ayrı okumak ve anlamak zorundadır. Yoğun acil servis ortamında bu ciddi bir hata riski oluşturur.</p>
+        </div>
+    </div>
+</body>
+</html>

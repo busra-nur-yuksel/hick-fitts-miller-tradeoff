@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miller Yasası - İyi Tasarım</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .formula {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            border-left: 4px solid #28a745;
+        }
+        .info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #495057;
+        }
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #dee2e6;
+            transition: all 0.3s;
+        }
+        .card:hover {
+            border-color: #28a745;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dee2e6;
+        }
+        .card-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #495057;
+        }
+        .card-chunk {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            border-left: 3px solid #28a745;
+        }
+        .card-chunk label {
+            display: block;
+            margin-bottom: 5px;
+            color: #495057;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .card-chunk input, .card-chunk select {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #ced4da;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        .chunk-count {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            margin-left: 5px;
+        }
+        .calculation {
+            margin-top: 30px;
+            padding: 20px;
+            background: #d4edda;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        .calculation h3 {
+            margin-bottom: 15px;
+            color: #155724;
+        }
+        .calc-result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+            margin-top: 10px;
+        }
+        .improvement {
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .chunk-breakdown {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hasta Veri Girişi - MILLER YASASI (İYİ TASARIM)</h1>
+        <p class="subtitle">Acil Servis Triyaj Sistemi - Chunking Uygulanmış Veri Girişi</p>
+
+        <div class="formula">
+            <strong>Miller Yasası:</strong> Çalışma belleği ~7 ± 2 birim (Miller, 1956)<br>
+            Chunking (Gruplama) yöntemi ile bilgi parçaları mantıksal öbeklere toplanır.
+        </div>
+
+        <div class="info">
+            <strong>İyileştirme:</strong> 15 adet karışık parametre 3 ana mantıksal karta gruplanmıştır.
+            Her kart en fazla 4-5 bilgi parçası içerir. Miller Yasası sınırı (7 ± 2) korunmuştur.
+        </div>
+
+        <div class="cards-container">
+            <!-- Kart 1: Vital Bulgular -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">❤️</div>
+                    <div class="card-title">Vital Bulgular <span class="chunk-count">4 Parça</span></div>
+                </div>
+                <div class="card-chunk">
+                    <label>Tansiyon (mmHg):</label>
+                    <input type="text" placeholder="120/80">
+                </div>
+                <div class="card-chunk">
+                    <label>Nabız (dk/dk):</label>
+                    <input type="number" placeholder="72">
+                </div>
+                <div class="card-chunk">
+                    <label>SpO2 (%):</label>
+                    <input type="number" placeholder="98">
+                </div>
+                <div class="card-chunk">
+                    <label>Sıcaklık (°C):</label>
+                    <input type="number" step="0.1" placeholder="36.5">
+                </div>
+            </div>
+
+            <!-- Kart 2: Bilinç & Nörolojik -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🧠</div>
+                    <div class="card-title">Bilinç & Nörolojik <span class="chunk-count">4 Parça</span></div>
+                </div>
+                <div class="card-chunk">
+                    <label>GCS Skoru (3-15):</label>
+                    <input type="number" placeholder="15">
+                </div>
+                <div class="card-chunk">
+                    <label>Pupiller Reaksiyon:</label>
+                    <select>
+                        <option value="">Seçiniz...</option>
+                        <option value="normal">Normal</option>
+                        <option value="yavas">Yavaş</option>
+                        <option value="yok">Yok</option>
+                    </select>
+                </div>
+                <div class="card-chunk">
+                    <label>Ağrı Skoru (0-10):</label>
+                    <input type="number" placeholder="0">
+                </div>
+                <div class="card-chunk">
+                    <label>Bilinç Durumu:</label>
+                    <select>
+                        <option value="">Seçiniz...</option>
+                        <option value="uyanik">Uyanık</option>
+                        <option value="sersem">Sersem</option>
+                        <option value="koma">Koma</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Kart 3: Risk & Alerji -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">⚠️</div>
+                    <div class="card-title">Risk & Alerji <span class="chunk-count">4 Parça</span></div>
+                </div>
+                <div class="card-chunk">
+                    <label>Alerji Durumu:</label>
+                    <input type="text" placeholder="Alerji var mı?">
+                </div>
+                <div class="card-chunk">
+                    <label>Kronik Hastalık:</label>
+                    <input type="text" placeholder="Kronik hastalık var mı?">
+                </div>
+                <div class="card-chunk">
+                    <label>Kullanılan İlaçlar:</label>
+                    <input type="text" placeholder="Kullanılan ilaçlar...">
+                </div>
+                <div class="card-chunk">
+                    <label>Geçmiş Öykü:</label>
+                    <input type="text" placeholder="Geçmiş hastalık öyküsü...">
+                </div>
+            </div>
+        </div>
+
+        <div class="calculation">
+            <h3>Miller Yasası Analizi (Chunking Uygulandı):</h3>
+            <div class="chunk-breakdown">
+                <strong>Kart 1 - Vital Bulgular:</strong> 4 parça (Tansiyon, Nabız, SpO2, Sıcaklık) ✓
+            </div>
+            <div class="chunk-breakdown">
+                <strong>Kart 2 - Bilinç & Nörolojik:</strong> 4 parça (GCS, Pupiller, Ağrı, Bilinç) ✓
+            </div>
+            <div class="chunk-breakdown">
+                <strong>Kart 3 - Risk & Alerji:</strong> 4 parça (Alerji, Kronik, İlaç, Öykü) ✓
+            </div>
+            <p><strong>Her Kart için Miller Yasası Sınırı:</strong> 7 ± 2 = 5-9 parça</p>
+            <p><strong>Mevcut Durum:</strong> Her kart 4 parça < 9 parça (sınır korundu) ✓</p>
+            <div class="calc-result">Bilişsel Yük: DÜŞÜK ✓</div>
+            <p class="improvement">✓ Bilgi parçaları mantıksal gruplara (chunk) ayrıldı! Her kart Miller Yasası sınırı içinde!</p>
+            <p style="margin-top: 10px; color: #6c757d;">Kullanıcı aynı anda sadece 4 bilgi parçası ile ilgilenmek zorunda. Bu, bilişsel yükü önemli ölçüde azaltır ve veri girişi hatalarını önler. Yoğun acil servis ortamında hata riski minimize edilir.</p>
+        </div>
+    </div>
+</body>
+</html>

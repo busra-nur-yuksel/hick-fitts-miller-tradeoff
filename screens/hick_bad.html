@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hick Yasası - Kötü Tasarım</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .formula {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            border-left: 4px solid #ffc107;
+        }
+        .info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #495057;
+        }
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .complaint-btn {
+            padding: 12px 8px;
+            border: 2px solid #ddd;
+            background: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #333;
+            transition: all 0.2s;
+            text-align: center;
+            line-height: 1.3;
+        }
+        .complaint-btn:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+        .complaint-btn.selected {
+            background: #007bff;
+            color: white;
+            border-color: #0056b3;
+        }
+        .calculation {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e7f3ff;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+        .calculation h3 {
+            margin-bottom: 15px;
+            color: #0056b3;
+        }
+        .calc-result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #dc3545;
+            margin-top: 10px;
+        }
+        .warning {
+            color: #dc3545;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Triyaj Şikayet Seçimi - HICK YASASI (KÖTÜ TASARIM)</h1>
+        <p class="subtitle">Acil Servis Triyaj Sistemi - Şikayet Seçimi Ekranı</p>
+
+        <div class="formula">
+            <strong>Hick Yasası Formülü:</strong> T = b · log₂(n + 1)<br>
+            T = Karar süresi (ms)<br>
+            b = 150-200 ms (kişi başına)<br>
+            n = Seçenek sayısı
+        </div>
+
+        <div class="info">
+            <strong>Mevcut Durum:</strong> Ekranda 20 adet triyaj şikayet butonu düzensizce sıralanmıştır.
+            Kullanıcı her bir butonu incelemek zorundadır.
+        </div>
+
+        <h2>Hasta Şikayetini Seçiniz (20 Seçenek):</h2>
+        <div class="button-grid">
+            <button class="complaint-btn" onclick="selectButton(this)">Göğüs Ağrısı</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Nefes Darlığı</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Baş Ağrısı</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Karın Ağrısı</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Bulanık Görme</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Çarpıntı</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Halsizlik</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Yüksek Ateş</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Kusma</button>
+            <button class="complaint-btn" onclick="selectButton(this)">İshal</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Omuz Ağrısı</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Bel Ağrısı</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Baş Dönmesi</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Ağız Kuruluğu</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Terleme</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Öksürük</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Boğaz Ağrısı</button>
+            <button class="complaint-btn" onclick="selectButton(this)">İdrar Sancısı</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Cilt Döküntüsü</button>
+            <button class="complaint-btn" onclick="selectButton(this)">Eklem Ağrısı</button>
+        </div>
+
+        <div class="calculation">
+            <h3>Hesaplama:</h3>
+            <p>n = 20 seçenek</p>
+            <p>b = 180 ms (ortalama)</p>
+            <p>T = 180 · log₂(20 + 1)</p>
+            <p>T = 180 · log₂(21)</p>
+            <p>T = 180 · 4.39</p>
+            <div class="calc-result">T ≈ 791 ms</div>
+            <p class="warning">⚠️ Kullanıcı yaklaşık 791 milisaniye (0.8 saniye) seçim yapmak için harcıyor. Bu süre kritik acil durumda çok uzun!</p>
+        </div>
+    </div>
+
+    <script>
+        function selectButton(btn) {
+            document.querySelectorAll('.complaint-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
+    </script>
+</body>
+</html>
